@@ -7,7 +7,6 @@ export default async function Home() {
   const user = session?.user as User;
 
   console.log(user);
-
   return (
     <div>
       <VoiceRecognition userInfo={user}/>
