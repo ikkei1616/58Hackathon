@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@/type";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type Props = {
   userInfo:User
@@ -10,6 +10,8 @@ type Props = {
 const VoiceRecognition = ({userInfo}:Props) => {
   const [title, setTitle ] = useState<string>("");
   const [summary, setSummary ] = useState<string>("");
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
 
   const changeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -44,8 +46,31 @@ const VoiceRecognition = ({userInfo}:Props) => {
     }
   }
 
+  const handleOnRecord = () => {
+    if (isRecording) {
+      setIsRecording(false);
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    } else {
+      console.log("start recording...");
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
 
-  
+      recognitionRef.current.onresult = function (event) {
+        // 認識されたテキストを取得
+        const transcript = event.results[0][0].transcript;
+
+        // 認識されたテキストを保存
+        setSummary(transcript);
+        setIsRecording(false);
+      };
+      recognitionRef.current.start();
+      setIsRecording(true);
+      
+    }
+  }
+
   return (
     <>
       <div  className="flex flex-col gap-4 mb-3">
@@ -53,12 +78,19 @@ const VoiceRecognition = ({userInfo}:Props) => {
           <p>title</p>    
           <input type="text" value={title} onChange={changeTitle} title="test" className="border-2"/>
         </div>
-        <div>
-          <p>summary</p>
-          <textarea  value={summary} onChange={changeSummary} title="test" className="border-2"/>
-        </div>
       </div>
-      <button onClick={postSummary} title="post summary" className="border-2 bg-amber-400">post summary</button>
+
+      <div>喋りかけてね</div>
+
+      <button onClick={handleOnRecord} title="button">{isRecording ? "停止" : "録音"}</button>
+      {summary && (
+          <>
+            <div>要約</div>
+            <p>{summary}</p>
+            <button onClick={postSummary} title="post summary" className="border-2 bg-amber-400">要約を保存する</button>
+          </>
+        )
+      }
     </>
   )
 }
