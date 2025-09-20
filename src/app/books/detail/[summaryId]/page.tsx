@@ -1,5 +1,8 @@
+"use client"
+//「IDが6の読書記録データを表示する詳細ページ」のReactコンポーネントです
 import Link from "next/link";
-import React from "react";
+import { useParams } from "next/navigation";
+import React, { use, useEffect } from "react";
 
 // SVGアイコンのプロパティを定義する新しいインターフェース
 interface IconProps extends React.SVGProps<SVGSVGElement> {
@@ -140,12 +143,32 @@ const mockData: SummaryItem[] = [
 ];
 
 const App = () => {
-  const summary = mockData.find(item => item.id === 6);
+  const {summaryId} = useParams();
+  const [summaryBook, setSummaryBook] = React.useState<SummaryItem | null>(null);
 
-  if (!summary) {
+  useEffect(() => {
+    const fetchData = async () => {
+  const response = await fetch(`/api/summarybook/${summaryId}`, {
+     method: "GET",
+  });
+
+  if (!response.ok) {
     return <div>要約が見つかりません。</div>;
   }
 
+  const data:SummaryItem = await response.json();
+  setSummaryBook(data);
+}
+    fetchData();
+   
+},[])
+
+
+  
+
+  if (!summaryBook) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 p-4 pb-20 font-sans">
       <style>{`
@@ -180,7 +203,7 @@ const App = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <h2 className="text-xl text-gray-800">{summary.title}</h2>
+              <h2 className="text-xl text-gray-800">{summaryBook.title}</h2>
             </CardContent>
           </Card>
 
@@ -194,7 +217,7 @@ const App = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-700">
-                {new Date(summary.created_at).toLocaleDateString('ja-JP', {
+                {new Date(summaryBook.created_at).toLocaleDateString('ja-JP', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
@@ -213,12 +236,12 @@ const App = () => {
             <CardContent>
               <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-4 border border-teal-100 overflow-y-scroll h-80">
                 <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                  {summary.summary}
+                  {summaryBook.summary}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
                 <span>📝 音声生成された要約</span>
-                <span>{summary.summary.split(' ').length} words</span>
+                <span>{summaryBook.summary.split(' ').length} words</span>
               </div>
             </CardContent>
           </Card>
@@ -245,3 +268,4 @@ const App = () => {
 };
 
 export default App;
+
