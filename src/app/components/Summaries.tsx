@@ -2,7 +2,7 @@
 import { User } from "@/type";
 import { useEffect, useState } from "react";
 import type { ReadingLogList } from "@/type";
-import SummaryList from "./SummaryList";
+import SummaryListItem from "./SummaryListItem";
 
 type Props = {
   userInfo: User;
@@ -69,8 +69,9 @@ const Summaries = ({ userInfo }: Props) => {
       <div className="list">
         {summaryBooks ? (
           find_month().map((item, _index) => (
-          <SummaryList
+          <SummaryListItem
             key={item.id}
+            summaryId ={item.id}
             createdAt={item.createdAt}
             updatedAt={item.updatedAt}
             summary={item.summary}
