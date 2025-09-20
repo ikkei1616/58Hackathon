@@ -2,20 +2,52 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/prisma";
 
 export async function POST(req: NextRequest) {
-  const { title, userId, summary } = await req.json();
+  try {
+    const { title, userId, summary } = await req.json();
 
-  // バリデーション例（必要に応じて追加）
-  if (!title || !userId || !summary) {
-    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    // バリデーション例（必要に応じて追加）
+    if (!title || !userId || !summary) {
+      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    }
+
+    const newBook = await prisma.summaryBook.create({
+      data: {
+        title,
+        userId,
+        summary,
+      },
+    });
+
+    return NextResponse.json(newBook, { status: 201 });
+  } catch (error) {
+    console.error("Failed to create summary book:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(req: NextRequest) {
+  const authId = req.nextUrl.searchParams.get("authId");
+
+  if (!authId) {
+    return NextResponse.json({ error: "authId is required" }, { status: 400 });
   }
 
-  const newBook = await prisma.summaryBook.create({
-    data: {
-      title,
-      userId,
-      summary,
-    },
-  });
-
-  return NextResponse.json(newBook, { status: 201 });
+  try {
+    const summaries = await prisma.summaryBook.findMany({
+      where: {
+        userId: authId,
+      },
+    });
+    return NextResponse.json(summaries, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching summaries:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch summaries" },
+      { status: 500 }
+    );
+  }
 }
+

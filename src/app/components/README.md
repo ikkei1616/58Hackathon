@@ -1,0 +1,1 @@
+geminiAPIのレスポンステスト,プロンプトを変更してcomponentファイル内のgemini専用関数で呼び出せます
