@@ -139,12 +139,30 @@ const mockData: SummaryItem[] = [
   { id: 10, title: "Docker環境構築", user_id: 107, summary: "Docker Compose を使って Next.js + Postgres の環境を構築した。Dockerfile と docker-compose.yml を作成し、アプリケーションとデータベースがコンテナ上で連携するように設定。ホットリロードの設定に少し苦戦したが、最終的に開発効率を大幅に向上させられることがわかった。コンテナ化により環境差異をなくせる点は非常に大きなメリットだと感じた。", created_at: "2025-09-10T17:45:00Z", updated_at: "2025-09-10T17:50:00Z", deleted_at: null },
 ];
 
-const App = () => {
+type Props = {
+  params: Promise< { summaryId : string; }>
+}
+
+const App = async ({params}:Props) => {
+  const { summaryId } = await params;
   const summary = mockData.find(item => item.id === 6);
 
   if (!summary) {
     return <div>要約が見つかりません。</div>;
   }
+
+  const res = await fetch(
+    'http://localhost:3000/api/summaryBookDetail',
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ summaryId }),
+      cache: "no-store",
+    }
+  );
+
+  const data = await res.json();
+  console.log(data);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 p-4 pb-20 font-sans">
@@ -180,7 +198,7 @@ const App = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <h2 className="text-xl text-gray-800">{summary.title}</h2>
+              <h2 className="text-xl text-gray-800">{data.title}</h2>
             </CardContent>
           </Card>
 
@@ -194,7 +212,7 @@ const App = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-700">
-                {new Date(summary.created_at).toLocaleDateString('ja-JP', {
+                {new Date(data.createdAt).toLocaleDateString('ja-JP', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
@@ -213,12 +231,12 @@ const App = () => {
             <CardContent>
               <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-4 border border-teal-100 overflow-y-scroll h-80">
                 <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                  {summary.summary}
+                  {data.summary}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
                 <span>📝 音声生成された要約</span>
-                <span>{summary.summary.split(' ').length} words</span>
+                <span>{data.summary.split(' ').length} words</span>
               </div>
             </CardContent>
           </Card>
