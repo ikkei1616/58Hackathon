@@ -6,7 +6,7 @@ export type User = {
 };
 
 export type ReadingLogList = {
-    id : number
+    id : string
     title : string
     user_id : number
     summary : string
@@ -20,6 +20,7 @@ export type ReadingLogListPage = {
 }
 
 export type ReadingListCardProps = {
+    summaryId: string;
     createdAt : string
     updatedAt : string
     title : string
