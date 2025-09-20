@@ -27,7 +27,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-green-100 px-4 py-3 shadow-2xl shadow-green-100/50">
       <div className="flex justify-around items-center max-w-md mx-auto">
         {navItems.map((item, index) => {
           const Icon = item.icon;
@@ -35,8 +35,8 @@ export default function Footer() {
           
           const content = (
             <>
-              <Icon size={20} />
-              <span className="text-xs mt-1">{item.label}</span>
+              <Icon size={22} className="mb-1" />
+              <span className="text-xs font-medium">{item.label}</span>
             </>
           );
 
@@ -44,10 +44,10 @@ export default function Footer() {
             <Link
               key={index}
               href={item.href}
-              className={`flex flex-col items-center py-2 px-4 rounded-xl transition-all duration-200 ${
+              className={`flex flex-col items-center py-3 px-4 rounded-2xl transition-all duration-300 ${
                 isActive
-                  ? "bg-blue-50 text-blue-600"
-                  : "text-gray-500 hover:text-gray-700"
+                  ? "bg-[#16A34A]/10 text-[#16A34A] shadow-lg shadow-green-100/50 scale-105"
+                  : "text-gray-500 hover:text-[#16A34A] hover:bg-green-50/50 hover:scale-105"
               }`}
             >
               {content}
@@ -55,7 +55,7 @@ export default function Footer() {
           ) : (
             <div
               key={index}
-              className="flex flex-col items-center py-2 px-4 rounded-xl text-gray-500"
+              className="flex flex-col items-center py-3 px-4 rounded-2xl text-gray-400 hover:text-gray-500 hover:bg-gray-50/50 transition-all duration-200"
             >
               {content}
             </div>
