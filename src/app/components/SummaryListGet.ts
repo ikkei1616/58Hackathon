@@ -1,7 +1,8 @@
+
 type UserIdProps = {
     userId : string
 }
-export async function ListGet ({userId}:UserIdProps) {
+export default async function ListGet ({userId}:UserIdProps) {
     try {
       const res = await fetch(`http://localhost:3000/api/getAllSummary?authId=${userId}`, {
         method: "get",
@@ -18,4 +19,3 @@ export async function ListGet ({userId}:UserIdProps) {
       console.error(e);
     }
 }
-export async SummaryList = async ListGet ();
