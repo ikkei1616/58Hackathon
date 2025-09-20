@@ -1,5 +1,7 @@
+import BackButton from "@/app/components/BackButton";
 import Link from "next/link";
 import React from "react";
+
 
 // SVGアイコンのプロパティを定義する新しいインターフェース
 interface IconProps extends React.SVGProps<SVGSVGElement> {
@@ -114,30 +116,6 @@ const Label: React.FC<LabelProps> = ({ children, className, ...props }) => (
   </label>
 );
 
-// モックデータの型定義
-interface SummaryItem {
-  id: number;
-  title: string;
-  user_id: number;
-  summary: string;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string | null;
-}
-
-// モックデータ (サーバーサイドで取得をシミュレート)
-const mockData: SummaryItem[] = [
-  { id: 1, title: "React入門", user_id: 101, summary: "本日は React の基本的な考え方を学んだ。特にコンポーネントの分割方法と再利用性について理解を深めることができた。フック（useState, useEffect）を用いて状態管理を行う練習もした。これらを活用することで、単純なカウンターアプリや ToDo リストを効率的に構築できると実感した。", created_at: "2025-09-01T10:00:00Z", updated_at: "2025-09-01T10:30:00Z", deleted_at: null },
-  { id: 2, title: "Next.jsアプリ構築", user_id: 102, summary: "Next.js を使って新しいアプリを構築。SSG（静的サイト生成）と SSR（サーバーサイドレンダリング）の違いを実際に動かして確認した。さらに API Routes を用いて簡単なエンドポイントを作成し、フロントエンドからデータを取得する流れを試した。パフォーマンス計測も行い、CSRとの違いを実感。", created_at: "2025-09-02T09:15:00Z", updated_at: "2025-09-02T09:20:00Z", deleted_at: null },
-  { id: 3, title: "Prisma ORM学習", user_id: 101, summary: "Prisma を使って Postgres データベースと接続し、スキーマ定義からマイグレーションを行った。モデルを追加してリレーションを張る練習も実施。例えば User と Post の関係を one-to-many で表現し、実際にクエリを投げてデータを取得した。Prisma Studio を利用すると GUI でデータの確認ができ、とても便利だった。", created_at: "2025-09-03T14:00:00Z", updated_at: "2025-09-03T14:10:00Z", deleted_at: null },
-  { id: 4, title: "NeonでPostgres", user_id: 103, summary: "Neon を利用してクラウド上に Postgres 環境を用意。接続文字列を取得し、ローカルの Prisma プロジェクトから接続してみた。Neon は無料枠で接続数制限があるため、接続プーリングを有効化する方法についても調べた。データベースのレスポンスは安定しており、学習用には十分だった。", created_at: "2025-09-04T18:00:00Z", updated_at: "2025-09-04T18:15:00Z", deleted_at: null },
-  { id: 5, title: "Auth.jsの使い方", user_id: 104, summary: "Auth.js を使って GitHub 認証を導入した。ログイン後にはセッションが作成され、ユーザー情報がデータベースに保存されることを確認。PrismaAdapter を利用して User や Account テーブルにレコードが作られる流れを学んだ。また、JWT と DB セッションの違いについても調査し、サーバーレス環境では JWT の方が向いていると理解した。", created_at: "2025-09-05T11:30:00Z", updated_at: "2025-09-05T11:50:00Z", deleted_at: null },
-  { id: 6, title: "Firebase Firestore練習", user_id: 102, summary: "Firebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore irebase Firestore を使ってデータを追加、更新、削除する処理を練習。React のフォームと組み合わせ、ユーザー入力を Firestore に保存するサンプルアプリを作った。さらにリアルタイムでデータが反映される機能を確認し、Socket を意識せずに動作する点が非常に便利だと感じた。", created_at: "2025-09-06T08:40:00Z", updated_at: "2025-09-06T08:42:00Z", deleted_at: null },
-  { id: 7, title: "TypeScript型入門", user_id: 105, summary: "TypeScript の型注釈について学んだ。変数や関数の引数に型をつけると、開発中にエラーが早期に検出される点が非常に便利。インターフェースと型エイリアスの違いを理解し、オブジェクトの構造を安全に扱えるようになった。また、ジェネリクスを使った型定義により、柔軟な関数を設計できることも実感。", created_at: "2025-09-07T21:00:00Z", updated_at: "2025-09-07T21:15:00Z", deleted_at: null },
-  { id: 8, title: "SQL基礎復習", user_id: 106, summary: "SQL の基礎を復習。SELECT 文でデータを取得し、WHERE 句で条件を絞り込む方法を改めて確認。INNER JOIN と LEFT JOIN を比較し、結合方法によって取得できるレコードがどう変化するかをテーブル例で試した。GROUP BY と HAVING 句を組み合わせて集計クエリを作成する練習も行った。", created_at: "2025-09-08T13:25:00Z", updated_at: "2025-09-08T13:30:00Z", deleted_at: null },
-  { id: 9, title: "UI/UXデザイン勉強", user_id: 101, summary: "Figma を使って新しいアプリのプロトタイプを作成。Auto Layout 機能を使ってレスポンシブデザインを意識し、ボタンやカードコンポーネントを再利用可能な形で作成した。さらに、ユーザーフローを意識して画面遷移を設計し、実際にクリックして動作を確認できるインタラクティブなプロトタイプを作った。", created_at: "2025-09-09T15:10:00Z", updated_at: "2025-09-09T15:40:00Z", deleted_at: null },
-  { id: 10, title: "Docker環境構築", user_id: 107, summary: "Docker Compose を使って Next.js + Postgres の環境を構築した。Dockerfile と docker-compose.yml を作成し、アプリケーションとデータベースがコンテナ上で連携するように設定。ホットリロードの設定に少し苦戦したが、最終的に開発効率を大幅に向上させられることがわかった。コンテナ化により環境差異をなくせる点は非常に大きなメリットだと感じた。", created_at: "2025-09-10T17:45:00Z", updated_at: "2025-09-10T17:50:00Z", deleted_at: null },
-];
 
 type Props = {
   params: Promise< { summaryId : string; }>
@@ -145,11 +123,6 @@ type Props = {
 
 const App = async ({params}:Props) => {
   const { summaryId } = await params;
-  const summary = mockData.find(item => item.id === 6);
-
-  if (!summary) {
-    return <div>要約が見つかりません。</div>;
-  }
 
   const res = await fetch(
     'http://localhost:3000/api/summaryBookDetail',
@@ -162,7 +135,7 @@ const App = async ({params}:Props) => {
   );
 
   const data = await res.json();
-  console.log(data);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 p-4 pb-20 font-sans">
@@ -176,13 +149,7 @@ const App = async ({params}:Props) => {
       <div className="max-w-md mx-auto pt-8">
         {/* ヘッダー */}
         <div className="flex items-center mb-6">
-          <Link href="/books/1" passHref>
-            <Button
-              className="mr-3 rounded-full bg-white/50 hover:bg-white/80 transition-all text-gray-800"
-            >
-              <ArrowLeft size={20} />
-            </Button>
-          </Link>
+          <BackButton />
           <div className="flex-1">
             <h1 className="text-xl text-gray-800">要約の詳細</h1>
           </div>
