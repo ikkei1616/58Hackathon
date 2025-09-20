@@ -1,0 +1,99 @@
+.reading_list_page{
+    padding: 1rem;
+}
+.header_1{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 900;
+    padding: 2rem;
+    border: 2px dashed;
+    border-radius: 2rem;
+    margin: 0.5rem;
+}
+.list {
+    display: block;
+}
+
+.card{
+    background-color: rgb(255, 247, 236);
+    padding-left: 1rem;
+    transition: 0.3s;
+    margin: 0.3rem;
+    margin-top:0.3rem;
+    margin-bottom: 1rem;
+    border-radius: 0.2rem;
+    box-shadow:0.3rem 0.3rem 0.3rem 0.3rem rgb(210, 210, 210);
+    display: flex;
+    align-items: center;
+
+}
+.card:hover{
+    background-color: rgb(255, 233, 209);
+}
+.card_header{
+    padding: 0.5rem;
+    text-align: center;
+    padding-left: 1rem;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+.card_summary{
+    font-size:1rem;
+    padding: 0.5rem;
+    height: 5rem;
+    padding-right: 1.2rem;
+    padding-top: 0.3rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis; /* 「…」と省略 */
+    -webkit-text-overflow: ellipsis; /* Safari用 */
+    -o-text-overflow: ellipsis; /* Opera用 */
+    
+}
+.card_created_at{
+    text-align: right;
+    font-size: 0.7rem;
+    padding-right: 1rem;
+    color:gray;
+
+}
+.card_updated_at{
+    text-align: right;
+    font-size:0.7rem;
+    padding-right: 1rem;
+    color:gray;
+}
+.arrow{
+    font-weight: 900;
+    color:gray;
+}
+
+.select_month{
+    padding: 2rem;
+    padding-top: 0px;
+    text-align: center;
+    font-size: 2rem;
+}
+.select_month_header{
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.select_month_input{
+    border:1px dashed rgb(255, 132, 0);
+    font-size: 1.5rem;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    transition: 0.2s;
+}
+.select_month_input:hover{
+    border:1px dashed rgb(255, 0, 0);
+    background-color: rgb(255, 246, 240);
+}
+.select_month_check{
+    font-size: 1.5rem;
+    padding: 1rem;
+    background-color: rgb(227, 227, 227);
+    border-radius: 0.3rem;
+}
