@@ -12,7 +12,7 @@ interface NavItem {
   label: string;
 }
 
-export default function Footer(): JSX.Element {
+export default function Footer() {
   const pathname = usePathname();
   const [isClient, setIsClient] = useState(false);
 
