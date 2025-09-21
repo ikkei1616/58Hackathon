@@ -1,6 +1,8 @@
 import BackButton from "@/app/components/BackButton";
 import Link from "next/link";
 import React from "react";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 
 // SVGアイコンのプロパティを定義する新しいインターフェース
@@ -122,10 +124,18 @@ type Props = {
 }
 
 const App = async ({params}:Props) => {
+  // 認証チェック
+  const session = await auth();
+  const user = session?.user;
+
+  if (!session || !user) {
+    redirect("/auth/signIn");
+  }
+
   const { summaryId } = await params;
 
   const res = await fetch(
-    'http://localhost:3000/api/summaryBookDetail',
+    `https://58-hackathon.vercel.app/api/summaryBookDetail`,
     {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},

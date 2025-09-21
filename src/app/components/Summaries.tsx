@@ -1,8 +1,8 @@
 "use client";
-import { User } from "@/type";
 import { useEffect, useState } from "react";
 import type { ReadingLogList } from "@/type";
 import SummaryListItem from "./SummaryListItem";
+import { User } from "next-auth";
 
 type Props = {
   userInfo: User;
@@ -18,7 +18,7 @@ const Summaries = ({ userInfo }: Props) => {
     async function getSummaries() {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/summarybook?userId=${userId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/summarybook?userId=${userId}`,
           { cache: "no-store" }
         );
         const summaryBooks = await res.json();
@@ -30,7 +30,7 @@ const Summaries = ({ userInfo }: Props) => {
       }
     }
     getSummaries();
-  }, []);
+  }, [userId]);
 
   function find_month(): ReadingLogList[] {
     const arr: ReadingLogList[] = [];
@@ -44,7 +44,7 @@ const Summaries = ({ userInfo }: Props) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F5F0] px-4 py-6">
+    <div className=" bg-[#F8F5F0] px-4 py-6 mb-18">
       {/* ヘッダー */}
       <div className="mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
