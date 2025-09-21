@@ -69,7 +69,7 @@ const VoiceRecognition = ({userInfo}:Props) => {
     setIsSaving(true);
     
     try {
-      const res = await fetch("/api/summarybook", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/summarybook`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
