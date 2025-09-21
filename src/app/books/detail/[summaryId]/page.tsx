@@ -135,7 +135,7 @@ const App = async ({params}:Props) => {
   const { summaryId } = await params;
 
   const res = await fetch(
-    'http://localhost:3000/api/summaryBookDetail',
+    `${process.env.NEXT_PUBLIC_API_URL}/api/summaryBookDetail`,
     {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
