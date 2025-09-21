@@ -30,7 +30,7 @@ const Summaries = ({ userInfo }: Props) => {
       }
     }
     getSummaries();
-  }, []);
+  }, [userId]);
 
   function find_month(): ReadingLogList[] {
     const arr: ReadingLogList[] = [];
@@ -44,7 +44,7 @@ const Summaries = ({ userInfo }: Props) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F5F0] px-4 py-6">
+    <div className=" bg-[#F8F5F0] px-4 py-6 mb-18">
       {/* ヘッダー */}
       <div className="mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
