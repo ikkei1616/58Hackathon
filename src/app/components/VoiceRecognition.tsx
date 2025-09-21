@@ -1,7 +1,10 @@
 "use client";
 
-import { User } from "@/type";
+
 import { useRef, useState, useEffect } from "react";
+import { User } from "next-auth";
+
+
 
 type Props = {
   userInfo:User

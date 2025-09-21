@@ -1,8 +1,8 @@
 "use client";
-import { User } from "@/type";
 import { useEffect, useState } from "react";
 import type { ReadingLogList } from "@/type";
 import SummaryListItem from "./SummaryListItem";
+import { User } from "next-auth";
 
 type Props = {
   userInfo: User;
