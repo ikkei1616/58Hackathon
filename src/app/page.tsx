@@ -1,12 +1,14 @@
 import { auth } from "@/auth";
 import VoiceRecognition from "@/app/components/VoiceRecognition";
-import { User } from "@/type/index";
+import { User } from "next-auth";
 
 export default async function Home() {
   const session = await auth();
-  const user = session?.user as User;
+  const user = session?.user;
 
-  console.log(user);
+  if (user === undefined) {
+    return <div>Please sign in</div>;
+  }
 
   return (
     <div>
