@@ -89,14 +89,6 @@ const VoiceRecognition = ({userInfo}:Props) => {
       // 保存成功時の処理
       setShowSuccessModal(true);
       
-      // 3秒後にモーダルを自動で閉じる
-      setTimeout(() => {
-        setShowSuccessModal(false);
-        // フォームをリセット
-        setTitle("");
-        setSummary("");
-      }, 3000);
-      
     } catch (e){
       console.error(e);
       alert("保存に失敗しました。もう一度お試しください。");
@@ -269,7 +261,7 @@ const VoiceRecognition = ({userInfo}:Props) => {
       {/* 成功モーダル */}
       {showSuccessModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4 transform animate-pulse">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
             <div className="text-center space-y-4">
               {/* 成功アイコン */}
               <div className="w-16 h-16 bg-[#16A34A] rounded-full flex items-center justify-center mx-auto">
