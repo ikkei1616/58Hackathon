@@ -18,7 +18,7 @@ const Summaries = ({ userInfo }: Props) => {
     async function getSummaries() {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/summarybook?userId=${userId}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/summarybook?userId=${userId}`,
           { cache: "no-store" }
         );
         const summaryBooks = await res.json();
