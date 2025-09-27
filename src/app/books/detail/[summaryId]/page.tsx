@@ -3,6 +3,10 @@ import Link from "next/link";
 import React from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+
 
 
 // SVGアイコンのプロパティを定義する新しいインターフェース
@@ -40,82 +44,6 @@ const BookOpen: React.FC<IconProps> = (props) => (
     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
   </svg>
-);
-
-// Shadcn/uiのモックUIコンポーネントのProps型定義
-interface ButtonProps extends React.ComponentProps<'button'> {
-  children: React.ReactNode;
-  className: string;
-}
-
-interface CardProps extends React.ComponentProps<'div'> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-interface CardHeaderProps extends React.ComponentProps<'div'> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-interface CardTitleProps extends React.ComponentProps<'h3'> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-interface CardContentProps extends React.ComponentProps<'div'> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-interface InputProps extends React.ComponentProps<'input'> {
-  className?: string;
-}
-
-interface LabelProps extends React.ComponentProps<'label'> {
-  children: React.ReactNode;
-  className?: string;
-}
-
-// Shadcn/uiのモックUIコンポーネント
-const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => (
-  <button className={`p-2 rounded-xl text-sm font-medium transition-colors ${className}`} {...props}>
-    {children}
-  </button>
-);
-
-const Card: React.FC<CardProps> = ({ children, className, ...props }) => (
-  <div className={`rounded-xl border shadow-sm ${className}`} {...props}>
-    {children}
-  </div>
-);
-
-const CardHeader: React.FC<CardHeaderProps> = ({ children, className, ...props }) => (
-  <div className={`flex flex-col space-y-1.5 p-6 ${className}`} {...props}>
-    {children}
-  </div>
-);
-
-const CardTitle: React.FC<CardTitleProps> = ({ children, className, ...props }) => (
-  <h3 className={`text-lg font-semibold leading-none tracking-tight ${className}`} {...props}>
-    {children}
-  </h3>
-);
-
-const CardContent: React.FC<CardContentProps> = ({ children, className, ...props }) => (
-  <div className={`p-6 pt-0 ${className}`} {...props}>
-    {children}
-  </div>
-);
-
-const Input: React.FC<InputProps> = ({ className, ...props }) => (
-  <input className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`} {...props} />
-);
-
-const Label: React.FC<LabelProps> = ({ children, className, ...props }) => (
-  <label className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${className}`} {...props}>
-    {children}
-  </label>
 );
 
 
