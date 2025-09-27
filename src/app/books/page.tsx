@@ -1,7 +1,7 @@
 import "./style.css";
 
 import { auth } from "@/auth";
-import Summaries from "@/app/components/Summaries";
+import Summaries from "@/components/Summaries";
 import { redirect } from "next/navigation";
 
 

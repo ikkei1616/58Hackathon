@@ -1,4 +1,4 @@
-import BackButton from "@/app/components/BackButton";
+import BackButton from "@/components/BackButton";
 import Link from "next/link";
 import React from "react";
 import { auth } from "@/auth";
