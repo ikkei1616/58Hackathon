@@ -38,13 +38,6 @@ const App = async ({params}:Props) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 p-4 pb-20 font-sans">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body {
-          font-family: 'Inter', sans-serif;
-        }
-      `}</style>
-      <script src="https://cdn.tailwindcss.com"></script>
       <div className="max-w-md mx-auto pt-8">
         {/* ヘッダー */}
         <div className="flex items-center mb-6">
