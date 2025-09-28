@@ -5,30 +5,7 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-
-// SVGアイコンのプロパティを定義する新しいインターフェース
-interface IconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number;
-}
-
-// Lucide-ReactアイコンをインラインSVGとして定義
-const Calendar: React.FC<IconProps> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M8 2v4" />
-    <path d="M16 2v4" />
-    <rect width="18" height="18" x="3" y="4" rx="2" />
-    <path d="M3 10h18" />
-  </svg>
-);
-
-
-const BookOpen: React.FC<IconProps> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-  </svg>
-);
+import { Calendar, BookOpen } from "lucide-react";
 
 
 type Props = {
@@ -82,7 +59,7 @@ const App = async ({params}:Props) => {
           <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center space-x-2 text-lg text-gray-800">
-                <BookOpen size={20} className="text-teal-500" />
+                <BookOpen size={24} className="text-teal-500" />
                 <span>タイトル</span>
               </CardTitle>
             </CardHeader>
@@ -95,7 +72,7 @@ const App = async ({params}:Props) => {
           <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center space-x-2 text-lg text-gray-800">
-                <Calendar size={20} className="text-cyan-500" />
+                <Calendar size={24} className="text-cyan-500" />
                 <span>作成日</span>
               </CardTitle>
             </CardHeader>
