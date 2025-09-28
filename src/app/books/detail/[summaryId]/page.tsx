@@ -63,7 +63,7 @@ const App = async ({params}:Props) => {
   const { summaryId } = await params;
 
   const res = await fetch(
-    `https://58-hackathon.vercel.app/api/summaryBookDetail`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/summaryBookDetail`,
     {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
