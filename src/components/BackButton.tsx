@@ -32,7 +32,7 @@ const BackButton = () => {
   const router = useRouter();
   return (
     <Button
-      className="mr-3 rounded-full bg-white/50 hover:bg-white/80 transition-all text-gray-800 cursor-pointer"
+      className="mr-3 rounded-full hover:bg-white/80 transition-all text-gray-800 cursor-pointer"
       onClick={() => {
         router.back();
       }}
