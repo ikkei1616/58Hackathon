@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, BookOpen, FileText, Mic, Clock } from "lucide-react";
-
+import getSummaryDetail from "@/features/summaryDetail/api/getSummaryDetail";
 
 type Props = {
   params: Promise< { summaryId : string; }>
@@ -23,18 +23,7 @@ const App = async ({params}:Props) => {
 
   const { summaryId } = await params;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/summaryBookDetail`,
-    {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ summaryId }),
-      cache: "no-store",
-    }
-  );
-
-  const data = await res.json();
-
+  const data = await getSummaryDetail(summaryId);
 
   return (
     <div className="min-h-screen bg-[#F8F5F0] p-4 pb-24">
