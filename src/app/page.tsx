@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import VoiceRecognition from "@/app/components/VoiceRecognition";
+import VoiceRecognition from "@/components/VoiceRecognition";
 import { User } from "next-auth";
 import { redirect } from "next/navigation";
 

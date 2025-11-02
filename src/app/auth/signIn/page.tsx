@@ -1,4 +1,4 @@
-import GitHubSignInButton from "@/app/components/GitHubSignInButton"
+import GitHubSignInButton from "@/components/GitHubSignInButton"
 
 const page = () => {
   return (
